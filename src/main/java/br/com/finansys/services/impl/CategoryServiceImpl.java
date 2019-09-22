@@ -1,5 +1,7 @@
 package br.com.finansys.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,12 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	public Category save(Category category) {
-		System.out.println(category);
 		return categoryRepository.save(category);
+	}
+
+	@Override
+	public List<Category> getAll() {
+		return categoryRepository.findAll();
 	}
 
 }
