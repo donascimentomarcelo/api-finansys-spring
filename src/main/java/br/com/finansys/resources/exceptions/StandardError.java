@@ -17,6 +17,16 @@ public class StandardError {
 		this.path = path;
 	}
 	
+	public StandardError(Long timeStamp, Integer status, String error, String path) {
+		super();
+		this.timeStamp = timeStamp;
+		this.status = status;
+		this.error = error;
+		this.path = path;
+	}
+
+
+
 	public StandardError() {
 		super();
 	}
