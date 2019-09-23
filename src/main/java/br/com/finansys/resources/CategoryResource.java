@@ -3,8 +3,9 @@ package br.com.finansys.resources;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class CategoryResource {
 	private CategoryService categoryService;
 	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody CategoryDto dto) {
+	public ResponseEntity<?> create(@Valid @RequestBody CategoryDto dto) {
 		Category obj = CategoryDto.fromDto(dto);
 		Category category = categoryService.save(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

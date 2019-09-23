@@ -1,7 +1,6 @@
 package br.com.finansys.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import br.com.finansys.domain.Category;
 
