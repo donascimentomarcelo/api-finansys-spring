@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.finansys.domain.Category;
 import br.com.finansys.repositories.CategoryRepository;
 import br.com.finansys.services.CategoryService;
+import br.com.finansys.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -27,8 +28,9 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Optional<Category> findOne(Integer id) {
-		return categoryRepository.findById(id);
+	public Category findOne(Integer id) {
+		return categoryRepository.findById(id)
+					.orElseThrow(() -> new ObjectNotFoundException("This category can't be finded!"));
 	}
 
 }

@@ -49,8 +49,8 @@ public class CategoryResource {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Category>> findOne(@PathVariable Integer id) {
-		Optional<Category> category = categoryService.findOne(id);
+	public ResponseEntity<Category> findOne(@PathVariable Integer id) {
+		Category category = categoryService.findOne(id);
 		return ResponseEntity.ok(category);
 	}
 

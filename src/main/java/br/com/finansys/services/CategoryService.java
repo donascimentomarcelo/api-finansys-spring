@@ -9,6 +9,6 @@ public interface CategoryService {
 
 	Category save(Category category);
 	List<Category> getAll();
-	Optional<Category> findOne(Integer id);
+	Category findOne(Integer id);
 
 }
