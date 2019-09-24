@@ -32,4 +32,17 @@ public class CategoryServiceImpl implements CategoryService {
 					.orElseThrow(() -> new ObjectNotFoundException("This category can't be finded!"));
 	}
 
+	@Override
+	public void update(Category category, Integer id) {
+		findOne(id);
+		category.setId(id);
+		categoryRepository.save(category);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		Category category = findOne(id);
+		categoryRepository.delete(category);
+	}
+
 }
