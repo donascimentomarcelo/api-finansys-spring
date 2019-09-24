@@ -45,4 +45,9 @@ public class CategoryServiceImpl implements CategoryService {
 		categoryRepository.delete(category);
 	}
 
+	@Override
+	public List<Category> findByParams(String name, String description) {
+		return categoryRepository.findByParams(name, description);
+	}
+
 }

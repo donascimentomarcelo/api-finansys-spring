@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -60,7 +61,6 @@ public class CategoryResource {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@RequestBody CategoryDto dto, @PathVariable Integer id){
 		Category category = CategoryDto.fromDto(dto);
-		category.setId(id);
 		categoryService.update(category, id);
 		return ResponseEntity.noContent().build();
 	}
@@ -69,5 +69,13 @@ public class CategoryResource {
 	public ResponseEntity<?> delete(@PathVariable Integer id){
 		categoryService.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/findByParams")
+	public ResponseEntity<List<Category>> findByParams(
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "description") String description) {
+		List<Category> list = categoryService.findByParams(name, description);
+		return ResponseEntity.ok(list);
 	}
 }
