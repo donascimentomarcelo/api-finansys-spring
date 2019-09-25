@@ -3,6 +3,9 @@ package br.com.finansys.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.finansys.domain.Category;
@@ -48,6 +51,13 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Category> findByParams(String name, String description) {
 		return categoryRepository.findByParams(name, description);
+	}
+
+	@Override
+	public Page<Category> paginate(Integer page, Integer linesPerPage, String orderBy, String direction, String name,
+			String description) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return categoryRepository.paginate(pageRequest, name.toLowerCase(), description.toLowerCase());
 	}
 
 }

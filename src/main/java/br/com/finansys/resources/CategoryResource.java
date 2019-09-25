@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,6 +77,18 @@ public class CategoryResource {
 			@RequestParam(value = "name") String name,
 			@RequestParam(value = "description") String description) {
 		List<Category> list = categoryService.findByParams(name, description);
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping("/paginate")
+	public ResponseEntity<Page<Category>> paginate(
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "description") String description,
+			@RequestParam(value = "page", defaultValue = "0") Integer page, 
+			@RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage, 
+			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy, 
+			@RequestParam(value = "direction", defaultValue = "ASC")String direction) {
+		Page<Category> list = categoryService.paginate(page, linesPerPage, orderBy, direction, name, description);
 		return ResponseEntity.ok(list);
 	}
 }
