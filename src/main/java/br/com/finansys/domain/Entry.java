@@ -2,7 +2,18 @@ package br.com.finansys.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Entry {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEntry")
 	private String id;
 	private String name;
 	private String description;
@@ -10,6 +21,9 @@ public class Entry {
 	private Date date;
 	private String paid;
 	private String amount;
+	
+	@JoinColumn(name = "categoryId")
+	@ManyToOne
 	private Category category;
 
 	public Entry(String id, String name, String description, String type, Date date, String paid, String amount,

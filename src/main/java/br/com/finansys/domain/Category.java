@@ -1,9 +1,15 @@
 package br.com.finansys.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Category {
@@ -13,6 +19,10 @@ public class Category {
 	private Integer id;
 	private String name;
 	private String description;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "category")
+	private List<Entry> entries = new ArrayList<>();
 
 	public Category(Integer id, String name, String description) {
 		this.id = id;
@@ -40,5 +50,11 @@ public class Category {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public List<Entry> getEntries() {
+		return entries;
+	}
+	public void setEntries(List<Entry> entries) {
+		this.entries = entries;
 	}
 }
