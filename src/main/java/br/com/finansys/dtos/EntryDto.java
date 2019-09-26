@@ -96,5 +96,9 @@ public class EntryDto {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+	public static EntryDto fromDto(Entry entry) {
+		return new EntryDto(entry);
+	}
 	
 }

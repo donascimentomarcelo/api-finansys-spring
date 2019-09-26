@@ -7,4 +7,5 @@ import br.com.finansys.domain.Entry;
 public interface EntryService {
 
 	List<Entry> getAllEntries();
+	Entry findOne(Integer id);
 }

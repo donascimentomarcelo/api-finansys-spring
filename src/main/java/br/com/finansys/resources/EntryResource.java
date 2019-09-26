@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,6 +27,13 @@ public class EntryResource {
 		List<EntryDto> dto = entries.stream()
 				.map(entry -> new EntryDto(entry))
 				.collect(Collectors.toList());
+		return ResponseEntity.ok(dto);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<EntryDto> findOne(@PathVariable Integer id) {
+		Entry entry = entryService.findOne(id);
+		EntryDto dto = EntryDto.fromDto(entry);
 		return ResponseEntity.ok(dto);
 	}
 
