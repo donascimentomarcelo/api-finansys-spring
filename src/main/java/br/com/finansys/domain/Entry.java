@@ -14,7 +14,7 @@ public class Entry {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEntry")
-	private String id;
+	private Integer id;
 	private String name;
 	private String description;
 	private String type;
@@ -26,7 +26,7 @@ public class Entry {
 	@ManyToOne
 	private Category category;
 
-	public Entry(String id, String name, String description, String type, Date date, String paid, String amount,
+	public Entry(Integer id, String name, String description, String type, Date date, String paid, String amount,
 			Category category) {
 		this.id = id;
 		this.name = name;
@@ -42,10 +42,10 @@ public class Entry {
 	
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
