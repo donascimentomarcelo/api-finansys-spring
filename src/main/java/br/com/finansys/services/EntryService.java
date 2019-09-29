@@ -8,4 +8,5 @@ public interface EntryService {
 
 	List<Entry> getAllEntries();
 	Entry findOne(Integer id);
+	Entry save(Entry entry);
 }

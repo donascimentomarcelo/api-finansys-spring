@@ -53,4 +53,8 @@ public class CategoryDto implements Serializable {
 	public static Category fromDto(CategoryDto dto) {
 		return new Category(null, dto.getName(), dto.getDescription());
 	}
+
+	public static CategoryDto fromDto(Category category) {
+		return new CategoryDto(category);
+	}
 }

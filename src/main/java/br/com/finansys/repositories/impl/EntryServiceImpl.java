@@ -27,4 +27,9 @@ public class EntryServiceImpl implements EntryService {
 				.orElseThrow(() -> new ObjectNotFoundException("This entry not be finded!"));
 	}
 
+	@Override
+	public Entry save(Entry entry) {
+		return entryRepository.save(entry);
+	}
+
 }
