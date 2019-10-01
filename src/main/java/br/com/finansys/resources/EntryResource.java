@@ -8,9 +8,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,11 +48,26 @@ public class EntryResource {
 
 	@PostMapping
 	public ResponseEntity<?> create(@Valid @RequestBody ActionEntryDto dto) {
-		Entry entry = entryService.save(ActionEntryDto.fromEntry(dto));
+		Entry entry = ActionEntryDto.fromEntry(dto);
+		Entry obj = entryService.save(entry);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}")
-					.buildAndExpand(entry.getId())
+					.buildAndExpand(obj.getId())
 					.toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> update(@Valid @RequestBody ActionEntryDto dto, @PathVariable Integer id) {
+		Entry entry = ActionEntryDto.fromEntry(dto);
+		entry.setId(id);
+		entryService.update(entry);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable Integer id) {
+		entryService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

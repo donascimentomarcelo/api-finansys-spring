@@ -9,4 +9,6 @@ public interface EntryService {
 	List<Entry> getAllEntries();
 	Entry findOne(Integer id);
 	Entry save(Entry entry);
+	void update(Entry entry);
+	void delete(Integer id);
 }

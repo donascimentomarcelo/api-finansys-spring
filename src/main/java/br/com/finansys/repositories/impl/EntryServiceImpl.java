@@ -32,4 +32,15 @@ public class EntryServiceImpl implements EntryService {
 		return entryRepository.save(entry);
 	}
 
+	@Override
+	public void update(Entry entry) {
+		save(entry);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		Entry entry = findOne(id);
+		entryRepository.delete(entry);
+	}
+
 }
