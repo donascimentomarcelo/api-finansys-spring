@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.finansys.domain.Entry;
 import br.com.finansys.dtos.EntryDto;
-import br.com.finansys.dtos.NewEntryDto;
+import br.com.finansys.dtos.ActionEntryDto;
 import br.com.finansys.services.EntryService;
 
 @RestController
@@ -43,8 +45,8 @@ public class EntryResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody NewEntryDto dto) {
-		Entry entry = entryService.save(NewEntryDto.fromEntry(dto));
+	public ResponseEntity<?> create(@Valid @RequestBody ActionEntryDto dto) {
+		Entry entry = entryService.save(ActionEntryDto.fromEntry(dto));
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 					.path("/{id}")
 					.buildAndExpand(entry.getId())

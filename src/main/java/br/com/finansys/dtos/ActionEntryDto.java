@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import br.com.finansys.domain.Entry;
 
-public class NewEntryDto {
+public class ActionEntryDto {
 
 	@NotEmpty(message = "The field NAME must be filled!")
 	@Length(min=5, max=80, message="In field NAME, the size should be between 5 and 80 characters!")
@@ -23,7 +23,7 @@ public class NewEntryDto {
 	private String amount;
 	private CategoryDto category;
 
-	public NewEntryDto(Entry entry) {
+	public ActionEntryDto(Entry entry) {
 		this.name = entry.getName();
 		this.description = entry.getDescription();
 		this.type = entry.getType();
@@ -33,7 +33,7 @@ public class NewEntryDto {
 		this.category = CategoryDto.fromDto(entry.getCategory());
 	}
 
-	public NewEntryDto() {
+	public ActionEntryDto() {
 	
 	}
 
@@ -93,7 +93,7 @@ public class NewEntryDto {
 		this.category = category;
 	}
 
-	public static Entry fromEntry(NewEntryDto dto) {
+	public static Entry fromEntry(ActionEntryDto dto) {
 		return new Entry(null, dto.getName(), dto.getDescription(), dto.getType(), dto.getDate(), dto.getPaid(), dto.getAmount(), CategoryDto.fromDto(dto.getCategory()));
 	}
 }
