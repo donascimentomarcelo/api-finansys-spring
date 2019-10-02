@@ -16,7 +16,7 @@ public class EntryDto {
 	private Date date;
 	private String paid;
 	private String amount;
-	private String category;
+	private CategoryDto category;
 
 	public EntryDto(Entry entry) {
 		this.id = entry.getId();
@@ -26,7 +26,7 @@ public class EntryDto {
 		this.date = entry.getDate();
 		this.paid = entry.getPaid();
 		this.amount = entry.getAmount();
-		this.category = entry.getCategory().getName();
+		this.category = CategoryDto.fromDto(entry.getCategory());
 	}
 
 	public EntryDto() {
@@ -89,11 +89,11 @@ public class EntryDto {
 		this.amount = amount;
 	}
 
-	public String getCategory() {
+	public CategoryDto getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(CategoryDto category) {
 		this.category = category;
 	}
 
