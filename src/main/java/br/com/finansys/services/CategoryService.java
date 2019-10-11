@@ -1,6 +1,7 @@
 package br.com.finansys.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
@@ -16,4 +17,5 @@ public interface CategoryService {
 	List<Category> findByParams(String name, String description);
 	Page<Category> paginate(Integer page, Integer linesPerPage, String orderBy, String direction, String name,
 			String description);
+	Optional<Category> findByName(String name);
 }

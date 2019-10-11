@@ -1,5 +1,7 @@
 package br.com.finansys.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +19,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer>, Ca
 			+ "WHERE LOWER(bean.name) = :name "
 			+ "OR LOWER(bean.description) = :description")
 	public Page<Category> paginate(Pageable pageRequest, @Param("name")String name, @Param("description")String description);
+
+	public Optional<Category> findByName(String name);
 
 }

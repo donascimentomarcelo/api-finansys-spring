@@ -7,7 +7,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.finansys.domain.Category;
+import br.com.finansys.services.validators.CategoryValidator;
 
+@CategoryValidator
 public class CategoryDto implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

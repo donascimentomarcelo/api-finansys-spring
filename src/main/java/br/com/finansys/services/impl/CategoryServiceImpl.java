@@ -1,6 +1,7 @@
 package br.com.finansys.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -58,6 +59,11 @@ public class CategoryServiceImpl implements CategoryService {
 			String description) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return categoryRepository.paginate(pageRequest, name.toLowerCase(), description.toLowerCase());
+	}
+
+	@Override
+	public Optional<Category> findByName(String name) {
+		return categoryRepository.findByName(name);
 	}
 
 }
