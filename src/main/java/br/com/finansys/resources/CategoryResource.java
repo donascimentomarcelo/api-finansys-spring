@@ -91,4 +91,14 @@ public class CategoryResource {
 		Page<Category> list = categoryService.paginate(page, linesPerPage, orderBy, direction, name, description);
 		return ResponseEntity.ok(list);
 	}
+	
+	@PostMapping("/save-many")
+	public ResponseEntity<?> saveMany(@Valid @RequestBody List<CategoryDto> dtos) {
+		List<Category> list = dtos
+		.stream()
+		.map(category -> CategoryDto.fromDto(category))
+		.collect(Collectors.toList());
+		categoryService.saveMany(list);
+		return ResponseEntity.created(null).build();
+	}
 }

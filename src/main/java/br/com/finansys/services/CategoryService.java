@@ -18,4 +18,5 @@ public interface CategoryService {
 	Page<Category> paginate(Integer page, Integer linesPerPage, String orderBy, String direction, String name,
 			String description);
 	Optional<Category> findByName(String name);
+	void saveMany(List<Category> list);
 }

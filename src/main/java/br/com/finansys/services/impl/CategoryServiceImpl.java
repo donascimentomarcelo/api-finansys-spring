@@ -66,4 +66,9 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepository.findByName(name);
 	}
 
+	@Override
+	public void saveMany(List<Category> list) {
+		categoryRepository.saveAll(list);
+	}
+
 }
